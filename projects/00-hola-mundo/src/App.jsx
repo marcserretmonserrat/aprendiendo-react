@@ -1,35 +1,54 @@
-import { useState } from 'react'
 import './App.css'
 import { TwitterFollowCard } from './TwitterFollowCard'
 
 export function App () {
-    const test = { initialIsFollowing: false, userName: 'test' , name : 'test'}
-
-    const [name, setName] = useState('Listo')
-
-    console.log('render with name: ' + name)
+        const users = [
+    {
+        userName: 'MarcSerret',
+        name: 'MarcSerret',
+        initialIsFollowing: true
+    },
+    {
+        userName: 'midudev',
+        name: 'Miguel Ángel Duran',
+        initialIsFollowing: false
+    },
+    {
+        userName: 'pheralb',
+        name: 'Pablo Henandez',
+        initialIsFollowing: false
+    },
+    {
+        userName: 'tes1',
+        name: 'test',
+        initialIsFollowing: true
+    },
+    {
+        userName: 'test2',
+        name: 'test',
+        initialIsFollowing: true
+    },
+    {
+        userName: 'test3',
+        name: 'test',
+        initialIsFollowing: true
+    },
+    ]
 
     return(
         <section className='App'>
-            <TwitterFollowCard initialIsFollowing userName="MarcSerret" name="MarcSerret">
-                Marc Serret
-            </TwitterFollowCard>
-            <TwitterFollowCard initialIsFollowing userName="midudev" name="Miguel Ángel Duran">
-                Miguel Ángel Duran
-            </TwitterFollowCard>
-            <TwitterFollowCard initialIsFollowing={false} userName="pheralb" name="Pablo Henandez">
-                Pablo Henandez
-            </TwitterFollowCard>
-            <TwitterFollowCard {...test}>
-                
-            </TwitterFollowCard>
-            <TwitterFollowCard initialIsFollowing={false} userName={name} name="Prueba actualización dom">
-                Prueba actualización dom
-            </TwitterFollowCard>
-
-            <button onClick={()=>setName('Change')}>
-                Cambia nombre
-            </button>
+           {
+            users.map(({ userName, name, initialIsFollowing}) => (
+                    <TwitterFollowCard
+                    key={userName}
+                    userName={userName}
+                    initialIsFollowing={initialIsFollowing}
+                    >
+                        {name}
+                    </TwitterFollowCard>
+                )
+            )
+            }
         </section>
         
     )
